@@ -1,0 +1,244 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
+<title>JSON Input String using JavaScript</title>
+<script src="jquery-1.8.3.min.js"></script>
+<script src="jquery.json-2.2.js"></script>
+<script src="GetPostAjax.js"></script>
+<script type="text/javascript">
+$(document).ready(function()
+{
+ $("#username").focus();
+
+
+
+
+	$("#form").submit(function(e){
+		e.preventDefault();
+		var username,email,password,gender;
+		username=$("#username").val();
+		email=$("#email").val();
+		password=$("#username").val();
+		gender=$("#gender").val();
+		
+		if(username.length>0 && email.length>0 && password.length>0 && gender.length>0)
+			{
+			 var request = new Object();
+			 var userDetails = new Object();
+			 var user = new Object();
+			
+			 
+			 user.name=username;
+			 user.email=email;
+			 user.password=password;
+			 user.gender=gender;
+
+			 userDetails.user = user;
+			 request.userDetails = userDetails;
+             var jsonfy = $.toJSON(request);
+             $("#json1").html(jsonfy);
+			 var encodedata = 'jsonData='+encodeURIComponent(jsonfy);
+			 $("#json2").html(encodedata);
+			//Ajax Call
+			
+			var url='API URL';
+			post_data(url,encodedata, function(data) {
+				alert("Success");
+			});
+			
+			
+			 $(".part1").val('');
+			 $("#username").focus();
+			}
+		
+	});
+
+	$("#form2").submit(function(e){
+		e.preventDefault();
+	
+		var username,email,password,gender;
+		username=$("#username2").val();
+		email=$("#email2").val();
+		password=$("#username2").val();
+		gender=$("#gender2").val();
+		website1=$("#website1").val();
+		website2=$("#website2").val();
+		website3=$("#website3").val();
+		
+		if(username.length>0 && email.length>0 && password.length>0 && gender.length>0)
+			{
+			 var request = new Object();
+			 var userDetails = new Object();
+			 var user = new Object();
+			 var websites=new Array();
+		
+			 
+			 user.name=username;
+			 user.email=email;
+			 user.password=password;
+			 user.gender=gender;
+			 if(website1.length>0)
+			 websites.push(website1);  
+			
+			if(website2.length>0)
+			 websites.push(website2);
+			
+			if(website3.length>0)
+			 websites.push(website3);
+			
+			 user.websites=websites;
+
+			 userDetails.user = user;
+			 request.userDetails = userDetails;
+             var jsonfy = $.toJSON(request);
+             $("#json3").html(jsonfy);
+			 var encodedata = 'jsonData='+encodeURIComponent(jsonfy);
+			 $("#json4").html(encodedata);
+			//Ajax Call
+			var url='API URL';
+			post_data(url,encodedata, function(data) {
+				alert("Success");
+			});
+			
+			
+				 $(".part2").val('');
+				 $("#username2").focus();
+			}
+		
+	});
+});
+</script>
+<style>
+body{font-family:arial;font-size:12px;}
+.right{text-align:right}
+input[type='text'], select
+{
+border:solid 1px #333;
+padding:4px;
+width:180px;
+}
+select{width:190px}
+div{padding:20px;word-wrap: break-word;width:600px}
+
+</style>
+</head>
+<body>
+	<a href='www.9lessons.info'>www.9lessons.info</a>
+<table width='100%'>
+	<tr><td>
+<h1>JSON Input String using JavaScript</h1>
+</td>
+<td width='730px'>
+
+</td>
+</tr>
+</table>
+<table width='100%'>
+	<tr>
+	
+		<td valign='top'>
+			<table width='100%'>
+			<tr>
+
+			<td>
+			<form method='post' action='' id='form'>
+			<table width='100%'>
+			<tr>
+			<td class='right'>Name</td>
+			<td><input type='text' name='username' id='username'  class='part1'/></td>
+			</tr>
+
+			<tr>
+			<td class='right'>Email</td>
+			<td><input type='text' name='email' id='email' class='part1'//></td>
+			</tr>
+
+			<tr>
+			<td class='right'>Password</td>
+			<td><input type='text' name='password' id='password' class='part1'//></td>
+			</tr>
+
+			<tr>
+			<td class='right'>Gender</td>
+			<td><select name='gender' id='gender'><option value='male'>Male</option><option value='female'>Female</option></select></td>
+
+			</tr>
+
+			<tr>
+			<td class='right'></td>
+			<td><input type='submit' id='submit'/></td>
+			</tr>
+			</table>
+			</form>
+			</td>
+
+			<td width='50%' valign='top'>
+			<h2>JSON Output</h2>
+			<div id='json1'>
+			</div>
+			<h2>JSON Encoded Output</h2>
+			<div id='json2'>
+			</div>
+			</td>
+			</tr>
+
+			<tr>
+			<td>
+			<form method='post' action='' id='form2'>
+			<table width='100%'>
+			<tr>
+			<td class='right'>Name</td>
+			<td><input type='text' name='username' id='username2' class='part2'/></td>
+			</tr>
+
+			<tr>
+			<td class='right'>Email</td>
+			<td><input type='text' name='email' id='email2'  class='part2'/></td>
+			</tr>
+
+			<tr>
+			<td class='right'>Password</td>
+			<td><input type='text' name='password' id='password2'  class='part2'/></td>
+			</tr>
+
+			<tr>
+			<td class='right'>Gender</td>
+			<td><select name='gender' id='gender2'><option value='male'>Male</option><option value='female'>Female</option></select></td>
+
+			</tr>
+
+			<tr>
+			<td class='right' valign='top'>Websites</td>
+			<td>
+			 <input type="text" id='website1'  class='part2'/><br/>
+			   <input type="text" id='website2'  class='part2'/><br/>
+			<input type="text" id='website3'  class='part2'/><br/>
+			</td>
+			</tr>
+
+			<tr>
+			<td class='right'></td>
+			<td><input type='submit' id='submit2'/></td>
+			</tr>
+			</table>
+			</form>
+			</td>
+			<td width='50%' valign='top'>
+			<h2>JSON Array Output</h2>
+			<div id='json3'>
+			</div>
+			<h2>JSON Array Encoded Output</h2>
+			<div id='json4'>
+			</div>
+			</td>
+			</tr>
+
+
+			</table>	
+		</td>
+	 </tr>	
+
+
+</body>
+</html>
