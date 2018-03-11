@@ -1,0 +1,26 @@
+<html>
+<body>
+
+<input type="text" id="textId" name="text">
+<button onclick="displayFuction()">Click Here</button>
+<p id="displayText"></p>
+<script>
+var text;
+function displayFuction() {
+    var technology = document.getElementById("textId").value;
+    switch (technology) {
+        case "ashwini":
+        technology = "She is web developer";
+        break;
+        case "santosh":
+        technology = "He is full stack developer"
+        break;
+        default:
+        technology = "please enter 'ashwini' or 'santosh'";
+    }
+    document.getElementById("displayText").innerHTML = technology;
+}
+</script>
+
+</body>
+</html>
